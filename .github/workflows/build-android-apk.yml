@@ -27,6 +27,11 @@ jobs:
         run: |
           yes | "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null || true
           "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager" 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Generate branded Arabic launcher icon
+        working-directory: android-app
+        run: |
+          python3 -m pip install --user pillow arabic-reshaper python-bidi
+          python3 generate_icon.py
       - name: Build installable debug APK
         working-directory: android-app
         run: gradle --no-daemon assembleDebug
