@@ -1,0 +1,20 @@
+{
+  "name": "نور القلب | بشير قديش",
+  "short_name": "نور القلب",
+  "description": "المصحف الشريف والأذكار والأدعية وأسماء الله الحسنى",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#081b25",
+  "theme_color": "#102d32",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
