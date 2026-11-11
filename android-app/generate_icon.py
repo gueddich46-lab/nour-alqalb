@@ -15,7 +15,7 @@ d.polygon([(91,349),(160,331),(247,353),(247,407),(161,376),(91,396)],fill=(15,5
 d.polygon([(265,353),(352,331),(421,349),(421,396),(352,376),(265,407)],fill=(15,53,66))
 d.line([(256,350),(256,418)],fill=(244,213,142),width=7)
 font='/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf'
-for txt,size,y,color in [('نور القلب',57,195,(245,213,143)),('بشير قديش',39,267,(255,244,212))]:
+for txt,size,y,color in [('نور القلب',65,189,(245,213,143)),('بشير قديش',48,270,(255,244,212))]:
  f=ImageFont.truetype(font,size);render=get_display(arabic_reshaper.reshape(txt));bbox=d.textbbox((0,0),render,font=f);w=bbox[2]-bbox[0];d.text(((S-w)/2,y),render,font=f,fill=color,stroke_width=1,stroke_fill=(9,26,38))
 p=Path('app/src/main/res/drawable');p.mkdir(parents=True,exist_ok=True)
 im.save(p/'app_icon.png')
