@@ -1,0 +1,35 @@
+name: Build Nour Alqalb with Store Icon
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'android-app/**'
+      - 'store-launcher.svg'
+      - '.github/workflows/store-icon-apk.yml'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+      - name: Render identical launcher icon
+        run: |
+          python3 -m pip install --user cairosvg
+          mkdir -p android-app/app/src/main/res/drawable-nodpi
+          rm -f android-app/app/src/main/res/drawable/store_launcher.xml
+          python3 -c "import cairosvg; cairosvg.svg2png(url='store-launcher.svg',write_to='android-app/app/src/main/res/drawable-nodpi/store_launcher.png',output_width=432,output_height=432)"
+      - name: Build APK
+        run: cd android-app && gradle --no-daemon :app:assembleDebug
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Nour-Alqalb-Store-Icon-APK
+          path: android-app/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
